@@ -63,7 +63,29 @@
                 </a>
             </div>
         </header>
-        <main></main>
+        <main>
+            <section id="hero" class="home">
+                <div class="container">
+                    <h1>Once a year go someplace you've never been before.</h1>
+                    <button id="video-dialog-open">See video</button>
+                    <dialog id="video-dialog">
+                        <button id="video-dialog-close" type="submit" autofocus>
+                            <i class="fa fa-x"></i>
+                        </button>
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/F9hwvIJNaMk?si=QInb9kP8-klSScZX"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                        ></iframe>
+                    </dialog>
+                </div>
+            </section>
+        </main>
         <footer></footer>
         <!-- Main JS -->
         <script src="./assets/js/main.js"></script>

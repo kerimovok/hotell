@@ -1,0 +1,38 @@
+section.home#hero {
+    position: relative;
+    background-image: url("../media/images/about_1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    text-align: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+        @extend %flex-column-center;
+        height: 100%;
+        position: relative;
+        z-index: 3;
+
+        h1 {
+            color: white;
+            font-size: 50px;
+            line-height: 60px;
+            width: 80%;
+            margin-block: 48px;
+        }
+
+        > button {
+            background-color: $primary-color;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+        }
+    }
+}

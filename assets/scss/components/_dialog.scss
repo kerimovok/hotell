@@ -1,0 +1,27 @@
+dialog {
+    @include transition();
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 450px;
+    min-height: 300px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+
+    button {
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin-left: auto;
+        margin-bottom: 15px;
+    }
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
