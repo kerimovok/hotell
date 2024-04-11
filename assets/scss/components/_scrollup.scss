@@ -1,0 +1,20 @@
+#scroll-up {
+    @extend %flex-row-center;
+    @include position(
+        $position: fixed,
+        $bottom: 110px,
+        $right: 50px,
+        $z-index: 999
+    );
+    @include transition();
+    @include size(50px);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+
+    &:hover {
+        background: black;
+    }
+}

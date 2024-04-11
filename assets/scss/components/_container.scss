@@ -1,0 +1,18 @@
+.container {
+    max-width: $container-max-width;
+    margin-inline: auto;
+    padding-inline: 42px;
+
+    @include responsive(x-large) {
+        padding-inline: 46px;
+    }
+    @include responsive(large) {
+        padding-inline: 32px;
+    }
+    @include responsive(medium) {
+        padding-inline: 24px;
+    }
+    @include responsive(small) {
+        padding-inline: 16px;
+    }
+}

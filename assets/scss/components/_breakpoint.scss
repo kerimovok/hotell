@@ -1,0 +1,45 @@
+.breakpoint {
+    @include position(
+        $position: fixed,
+        $bottom: 50px,
+        $right: 50px,
+        $z-index: 999
+    );
+    @include size(50px);
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    background: black;
+    @include responsive(x-large) {
+        &::after {
+            content: "XL";
+            position: relative;
+            line-height: 50px;
+        }
+        background: green;
+    }
+    @include responsive(large) {
+        &::after {
+            content: "LG";
+            position: relative;
+            line-height: 50px;
+        }
+        background: blue;
+    }
+    @include responsive(medium) {
+        &::after {
+            content: "MD";
+            position: relative;
+            line-height: 50px;
+        }
+        background: yellow;
+    }
+    @include responsive(small) {
+        &::after {
+            content: "SM";
+            position: relative;
+            line-height: 50px;
+        }
+        background: red;
+    }
+}
