@@ -1,0 +1,107 @@
+header {
+    @include position(fixed, 0, 0, auto, 0, 100);
+
+    color: rgb(255, 255, 255, 0.5);
+    a {
+        color: rgb(255, 255, 255, 0.5);
+        &:hover {
+            color: white;
+        }
+    }
+
+    > .container {
+        padding-block: 40px;
+        @extend %flex-row-between;
+
+        > .logo {
+            color: white;
+            font-family: $font-family--WorkSans;
+            font-size: 24px;
+            font-weight: 700;
+
+            &:hover {
+                font-weight: 800;
+            }
+        }
+
+        > nav {
+            > ul {
+                @include flex(center, center, row, 20px);
+                li {
+                    padding-block: 5px;
+                    &.dropdown {
+                        position: relative;
+                        &:hover {
+                            > ul {
+                                visibility: visible;
+                                opacity: 1;
+                            }
+
+                            > ul.dropdown-menu-bottom {
+                                top: 100%;
+                            }
+                            > ul.dropdown-menu-right {
+                                left: 100%;
+                            }
+                        }
+                        i.fa-chevron-down {
+                            font-size: 10px;
+                        }
+                        > ul {
+                            @include transition();
+                            min-width: 150px;
+                            visibility: hidden;
+                            opacity: 0;
+                            position: absolute;
+                            background-color: white;
+                            border-radius: 7px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            padding-block: 20px;
+                            > li > a {
+                                display: block;
+                                padding-inline: 20px;
+                                width: max-content;
+                                color: black;
+
+                                &:hover {
+                                    color: $primary-color;
+                                }
+                            }
+                        }
+                        > ul.dropdown-menu-bottom {
+                            top: 120%;
+                            left: 0;
+                        }
+                        > ul.dropdown-menu-right {
+                            top: 0;
+                            left: 80%;
+                            border-top-left-radius: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .phone {
+            i {
+                color: white;
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+                line-height: 36px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                margin-right: 10px;
+                text-align: center;
+                border: 2px solid transparent;
+            }
+
+            &:hover {
+                i {
+                    background: transparent;
+                    border: 2px solid #fff;
+                }
+            }
+        }
+    }
+}
