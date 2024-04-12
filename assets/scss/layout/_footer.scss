@@ -1,0 +1,50 @@
+footer {
+    padding-block: 120px;
+    .container:first-of-type {
+        @include grid(4, 1, 50px);
+
+        div {
+            h3 {
+                font-size: 1rem;
+                font-weight: 400;
+                margin-bottom: 1rem;
+            }
+
+            address {
+                color: rgba(0, 0, 0, 0.5);
+                margin-bottom: 1rem;
+            }
+            ul > li {
+                margin-bottom: 10px;
+                > a {
+                    display: inline-block;
+                    color: rgba(0, 0, 0, 0.5);
+
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+
+            .socials {
+                @include flex(flex-start, flex-start, row, 10px);
+                li > a > i {
+                    font-size: 1rem;
+                    color: white;
+                    background: $primary-color;
+                    @include size(35px);
+                    @extend %flex-row-center;
+                    border-radius: 50%;
+
+                    &:hover {
+                        background: #00c4a8;
+                    }
+                }
+            }
+        }
+    }
+    .container:last-of-type {
+        margin-top: 80px;
+        text-align: center;
+    }
+}
