@@ -131,3 +131,14 @@ let testimonialsSlider = new Slider(
     3,
     1,
 );
+let imagesSlider = new Slider(
+    ".images-container",
+    ".images-content",
+    ".image-item",
+    ".images-btn-prev",
+    ".images-btn-next",
+    0,
+    3000,
+    5,
+    1,
+);
