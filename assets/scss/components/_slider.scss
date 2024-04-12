@@ -1,0 +1,31 @@
+/* SLIDER */
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.slider-content {
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+.slider-item {
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slider-buttons button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 7px 20px !important;
+    background-color: transparent;
+    border-color: transparent;
+    color: #000;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.slider-buttons button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
