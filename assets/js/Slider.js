@@ -120,3 +120,14 @@ let postsSlider = new Slider(
     3,
     1,
 );
+let testimonialsSlider = new Slider(
+    ".testimonials-container",
+    ".testimonials-content",
+    ".testimonial-item",
+    ".testimonials-btn-prev",
+    ".testimonials-btn-next",
+    30,
+    3000,
+    3,
+    1,
+);
