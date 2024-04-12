@@ -1,0 +1,39 @@
+.accordion-button {
+    @include transition();
+    font-family: $font-family--WorkSans;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 1em;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    color: #212529;
+}
+
+.accordion-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.accordion-body {
+    @include transition();
+    max-height: 0;
+    overflow: hidden;
+    border: none !important;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 0 1.25rem;
+}
+
+.accordion-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5em;
+}
+
+.accordion-item {
+    margin-bottom: 1em;
+}
+
+.accordion-body:not(.collapsed) {
+    max-height: 500px;
+    padding: 1rem 1.25rem;
+}
