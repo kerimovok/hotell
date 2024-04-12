@@ -1,5 +1,12 @@
 header {
     @include position(fixed, 0, 0, auto, 0, 100);
+    @include transition();
+    padding-block: 40px;
+    &.fixed {
+        padding-block: 15px;
+        background: $primary-color;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
     color: rgb(255, 255, 255, 0.5);
     a {
@@ -10,7 +17,6 @@ header {
     }
 
     > .container {
-        padding-block: 40px;
         @extend %flex-row-between;
 
         > .logo {

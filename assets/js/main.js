@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // HEADER
+    let header = document.querySelector("header");
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 5) {
+            header.classList.add("fixed");
+        } else {
+            header.classList.remove("fixed");
+        }
+    });
+
     // SCROLL TO TOP
     let windowH = window.innerHeight / 2;
     let scrollUp = document.getElementById("scroll-up");
