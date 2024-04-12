@@ -1,10 +1,10 @@
-section.home#services {
+section.home#posts {
     position: relative;
     min-height: 100vh;
     background: #f8f9fa;
     padding-block: 120px;
 
-    .container.search-services {
+    .container.search-posts {
         position: relative;
         z-index: 3;
         background: #f8f9fa;
@@ -58,34 +58,54 @@ section.home#services {
             margin-bottom: 20px;
         }
 
-        .services-container > .services-content > .service-item {
+        .slider-buttons {
+            @extend %flex-row-center;
+            gap: 5px;
+        }
+        .posts-container > .posts-content > .post-item {
             @include flex(center, flex-start, column, 0);
-            padding: 50px 50px 100px 50px;
             box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
             background: white;
 
             img {
-                width: 70px;
+                width: 100%;
             }
 
-            h5 {
-                font-size: 20px;
-                color: black;
-                margin-top: 1rem;
-                margin-bottom: 0.5rem;
-                line-height: 1.2;
-            }
+            .content {
+                position: relative;
+                padding: 40px 30px 30px 30px;
+                position: relative;
 
-            a {
-                position: absolute;
-                bottom: 30px;
-                text-transform: uppercase;
-                font-size: 12px;
-                font-weight: 700;
-                letter-spacing: 0.1rem;
-                color: #888888;
-                display: block;
-                width: max-content;
+                h4 {
+                    font-size: 20px;
+                    color: black;
+                    margin-top: 1rem;
+                    margin-bottom: 2rem;
+                    line-height: 1.2;
+                }
+
+                a {
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    font-weight: 700;
+                    letter-spacing: 0.1rem;
+                    color: #888888;
+                    display: block;
+                    width: max-content;
+                }
+
+                i {
+                    position: absolute;
+                    top: -20px;
+                    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    background-color: $primary-color;
+                    color: white;
+                    text-align: center;
+                    border-radius: 50%;
+                }
             }
         }
     }

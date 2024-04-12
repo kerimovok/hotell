@@ -1,9 +1,19 @@
 class Slider {
-    constructor(container, content, items, btnPrev, btnNext, gap) {
+    constructor(
+        container,
+        content,
+        items,
+        btnPrev,
+        btnNext,
+        gap,
+        autoSlideInterval,
+        slidesToShow,
+        slidesToScroll,
+    ) {
         this.position = 0;
-        this.slidesToShow = 3.3;
-        this.slidesToScroll = 1;
-        this.autoSlideInterval = 3000;
+        this.slidesToShow = slidesToShow;
+        this.slidesToScroll = slidesToScroll;
+        this.autoSlideInterval = autoSlideInterval;
         this.container = document.querySelector(container);
         this.content = document.querySelector(content);
         this.items = document.querySelectorAll(items);
@@ -33,16 +43,32 @@ class Slider {
         window.addEventListener("resize", setWH);
         setWH();
 
+        // Without sliding back to the first slide
+        // const setPosition = () => {
+        //     this.content.style.transform = `translateX(${this.position}px)`;
+        // };
         const setPosition = () => {
             this.content.style.transform = `translateX(${this.position}px)`;
-        };
-
-        const checkBtns = () => {
-            this.btnPrev.disabled = this.position >= 0;
-            this.btnNext.disabled =
+            if (
                 this.position <=
                 -(this.itemsCount - this.slidesToShow) *
-                    (this.itemWidth + this.gap);
+                    (this.itemWidth + this.gap)
+            ) {
+                this.position = 0;
+            }
+        };
+
+        // Without sliding back to the first slide
+        // const checkBtns = () => {
+        //     this.btnPrev.disabled = this.position >= 0;
+        //     this.btnNext.disabled =
+        //         this.position <=
+        //         -(this.itemsCount - this.slidesToShow) *
+        //             (this.itemWidth + this.gap);
+        // };
+        const checkBtns = () => {
+            this.btnPrev.disabled = this.position >= 0;
+            this.btnNext.disabled = false;
         };
 
         this.btnPrev.addEventListener("click", () => {
@@ -72,11 +98,25 @@ class Slider {
     }
 }
 
-let slider = new Slider(
+let servicesSlider = new Slider(
     ".services-container",
     ".services-content",
     ".service-item",
     ".services-btn-prev",
     ".services-btn-next",
     30,
+    3000,
+    3.3,
+    1,
+);
+let postsSlider = new Slider(
+    ".posts-container",
+    ".posts-content",
+    ".post-item",
+    ".posts-btn-prev",
+    ".posts-btn-next",
+    30,
+    3000,
+    3,
+    1,
 );
