@@ -444,14 +444,24 @@
                 </div>
             </section>
             <section id="testimonials" class="home">
-                <div class="container search-testimonials">
+                <div class="container testimonials-actions">
                     <form>
-                        <input
-                            type="text"
-                            placeholder="Search testimonials by their name"
-                        />
-                        <button type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                        <div class="search-and-sort">
+                            <input
+                                type="text"
+                                placeholder="Search testimonials by their name"
+                            />
+                            <div class="sort">
+                                <button id="sort-testimonials-alpha-down">
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                </button>
+                                <button id="sort-testimonials-alpha-up">
+                                    <i class="fas fa-sort-alpha-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-testimonial">
+                            <i class="fa fa-plus"></i>
                         </button>
                     </form>
                 </div>
