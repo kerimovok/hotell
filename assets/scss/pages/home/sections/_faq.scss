@@ -9,6 +9,11 @@ section.home#faq {
         display: flex;
         gap: 10rem;
 
+        @include responsive(large) {
+            flex-direction: column;
+            gap: 5rem;
+        }
+
         h2 {
             min-width: max-content;
             text-transform: uppercase;
