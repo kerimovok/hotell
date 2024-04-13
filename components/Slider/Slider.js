@@ -23,62 +23,68 @@ class Slider {
         this.itemWidth = this.items[0].clientWidth;
         this.movePosition = this.slidesToScroll * (this.itemWidth + this.gap);
         this.itemsCount = this.items.length;
-        this.docHeight = document.documentElement.clientHeight;
 
-        const setWH = () => {
-            this.itemWidth = this.items[0].clientWidth;
-            this.movePosition =
-                this.slidesToScroll * (this.itemWidth + this.gap);
-            this.items.forEach((item) => {
-                // item.style.minWidth = `${this.itemWidth}px`;
-                item.style.marginRight = `${this.gap}px`;
-            });
+        this.init();
+    }
 
-            this.position = 0;
-        };
+    init() {
+        this.setWH();
+        this.setPosition();
+        this.checkBtns();
+        this.autoSlide();
 
-        window.addEventListener("resize", setWH);
-        setWH();
+        window.addEventListener("resize", this.setWH.bind(this));
+        this.btnPrev.addEventListener("click", this.prevSlide.bind(this));
+        this.btnNext.addEventListener("click", this.nextSlide.bind(this));
+        window.addEventListener("beforeunload", this.stopAutoSlide.bind(this));
+    }
 
-        const setPosition = () => {
-            this.content.style.transform = `translateX(${this.position}px)`;
-            if (
-                this.position <=
-                -(this.itemsCount - this.slidesToShow) *
-                    (this.itemWidth + this.gap)
-            ) {
-                this.position = 0;
-            }
-        };
-
-        const checkBtns = () => {
-            this.btnPrev.disabled = this.position >= 0;
-            this.btnNext.disabled = false;
-        };
-
-        this.btnPrev.addEventListener("click", () => {
-            this.position += this.movePosition;
-            setPosition();
-            checkBtns();
+    setWH() {
+        this.itemWidth = this.items[0].clientWidth;
+        this.movePosition = this.slidesToScroll * (this.itemWidth + this.gap);
+        this.items.forEach((item) => {
+            item.style.marginRight = `${this.gap}px`;
         });
+        this.position = 0;
+    }
 
-        this.btnNext.addEventListener("click", () => {
-            this.position -= this.movePosition;
-            setPosition();
-            checkBtns();
-        });
+    setPosition() {
+        this.content.style.transform = `translateX(${this.position}px)`;
+        if (
+            this.position <=
+            -(this.itemsCount - this.slidesToShow) * (this.itemWidth + this.gap)
+        ) {
+            this.position = this.movePosition;
+        }
+    }
 
-        const autoSlide = () => {
-            this.autoSlideInterval = setInterval(() => {
-                this.btnNext.click();
-            }, this.autoSlideInterval);
-        };
+    checkBtns() {
+        this.btnPrev.disabled = this.position >= 0;
+        this.btnNext.disabled =
+            this.position <=
+            -(this.itemsCount - this.slidesToShow) *
+                (this.itemWidth + this.gap);
+    }
 
-        window.addEventListener("beforeunload", () => {
-            clearInterval(this.autoSlideInterval);
-        });
+    prevSlide() {
+        this.position += this.movePosition;
+        this.setPosition();
+        this.checkBtns();
+    }
 
-        checkBtns();
-        autoSlide();
+    nextSlide() {
+        this.position -= this.movePosition;
+        this.setPosition();
+        this.checkBtns();
+    }
+
+    autoSlide() {
+        this.autoSlideInterval = setInterval(() => {
+            this.btnNext.click();
+        }, this.autoSlideInterval);
+    }
+
+    stopAutoSlide() {
+        clearInterval(this.autoSlideInterval);
     }
 }
