@@ -31,6 +31,9 @@ header {
         }
 
         > nav {
+            @include responsive(small) {
+                display: none;
+            }
             > ul {
                 @include flex(center, center, row, 20px);
                 li {
@@ -89,6 +92,10 @@ header {
         }
 
         > .phone {
+            @include responsive(medium) {
+                display: none;
+            }
+
             i {
                 color: white;
                 width: 40px;

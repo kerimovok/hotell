@@ -1,10 +1,10 @@
 .burger {
-    color: black;
+    color: white;
     display: none !important;
     font-size: 24px;
     cursor: pointer;
 
-    @include responsive(large) {
+    @include responsive(medium) {
         display: block !important;
     }
 }
