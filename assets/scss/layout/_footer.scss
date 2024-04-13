@@ -3,6 +3,10 @@ footer {
     .container:first-of-type {
         @include grid(4, 1, 50px);
 
+        @include responsive(medium) {
+            @include grid(2, 2, 50px);
+        }
+
         div {
             h3 {
                 font-size: 1rem;
@@ -13,6 +17,10 @@ footer {
             address {
                 color: rgba(0, 0, 0, 0.5);
                 margin-bottom: 1rem;
+
+                @include responsive(small) {
+                    word-wrap: break-word;
+                }
             }
             ul > li {
                 margin-bottom: 10px;
@@ -28,6 +36,11 @@ footer {
 
             .socials {
                 @include flex(flex-start, flex-start, row, 10px);
+
+                @include responsive(small) {
+                    flex-wrap: wrap;
+                }
+
                 li > a > i {
                     font-size: 1rem;
                     color: white;
