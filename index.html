@@ -222,14 +222,24 @@
                 </div>
             </section>
             <section id="posts" class="home">
-                <div class="container search-posts">
+                <div class="container posts-actions">
                     <form>
-                        <input
-                            type="text"
-                            placeholder="Search posts by their name"
-                        />
-                        <button type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                        <div class="search-and-sort">
+                            <input
+                                type="text"
+                                placeholder="Search posts by their name"
+                            />
+                            <div class="sort">
+                                <button id="sort-posts-alpha-down">
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                </button>
+                                <button id="sort-posts-alpha-up">
+                                    <i class="fas fa-sort-alpha-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-post">
+                            <i class="fa fa-plus"></i>
                         </button>
                     </form>
                 </div>
