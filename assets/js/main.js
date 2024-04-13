@@ -22,6 +22,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // SERVICES
+    const service1 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking1",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+    const service2 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking2",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+    const service3 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking3",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+    const service4 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking4",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+    const service5 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking5",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+    const service6 = new Service(
+        "./assets/media/icons/trekking.png",
+        "Trekking6",
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
+    );
+
+    Service.add(service1, service2, service3, service4, service5, service6);
+
     // DIALOGS
     let videoDialog = new Dialog(
         "video-dialog",
