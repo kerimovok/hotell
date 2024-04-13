@@ -1,19 +1,45 @@
 class Service {
     static services = [];
-    // Create a proxy to listen for changes in the services array
-    // Basically, this proxy will call the render function whenever the services array is changed
+    /**
+     * Create a proxy to listen for changes in the services array
+     *
+     * Basically, this proxy will call the render function whenever the services array is changed
+     */
     static servicesProxy = new Proxy(this.services, {
         set: function (target, property, value) {
             Service.render();
 
-            // Setting the value in the array
+            // Setting the value into array
             target[property] = value;
             return true;
         },
     });
 
+    static validate(icon, title, content) {
+        if (!icon) {
+            throw new Error("Icon must not be empty");
+        }
+
+        if (title.length < 3) {
+            throw new Error("Title must be at least 3 characters long");
+        }
+
+        if (content.length < 10) {
+            throw new Error("Content must be at least 10 characters long");
+        }
+    }
+
     static id = 1;
+
+    /**
+     *
+     * @param {string} icon
+     * @param {string} title
+     * @param {string} content
+     */
     constructor(icon, title, content) {
+        Service.validate(icon, title, content);
+
         this.icon = icon;
         this.title = title;
         this.content = content;
@@ -25,16 +51,18 @@ class Service {
      * @returns {Service[]}
      */
     static getAll() {
-        return this.servicesProxy;
+        return Service.servicesProxy;
     }
 
     /**
      * Find a service by id
      * @param {number} id
-     * @returns {Service|undefined}
+     * @returns {Service|null}
      */
     static findById(id) {
-        return this.servicesProxy.find((service) => service.id === id);
+        return (
+            Service.servicesProxy.find((service) => service.id === id) || null
+        );
     }
 
     /**
@@ -42,14 +70,14 @@ class Service {
      * @param {...Service} services
      */
     static add(...services) {
-        this.servicesProxy.push(...services);
+        Service.servicesProxy.push(...services);
     }
     /**
      * Delete a service by id
      * @param {number} id
      */
     static delete(id) {
-        this.servicesProxy = this.servicesProxy.filter(
+        Service.servicesProxy = Service.servicesProxy.filter(
             (service) => service.id !== id,
         );
     }
@@ -60,10 +88,16 @@ class Service {
      * @param {Service} service
      */
     static update(id, service) {
-        const index = this.servicesProxy.findIndex(
-            (service) => service.id === id,
+        Service.validate(service.icon, service.title, service.content);
+
+        const index = Service.servicesProxy.findIndex(
+            (existingService) => existingService.id === id,
         );
-        this.servicesProxy[index] = service;
+        if (index !== -1) {
+            Service.servicesProxy[index] = service;
+        } else {
+            throw new Error("Service not found");
+        }
     }
 
     /**
@@ -71,14 +105,14 @@ class Service {
      * @returns {number}
      */
     static count() {
-        return this.servicesProxy.length;
+        return Service.servicesProxy.length;
     }
 
     /**
      * Empty the services array
      */
     static empty() {
-        this.servicesProxy = [];
+        Service.servicesProxy = [];
     }
 
     /**
@@ -86,12 +120,13 @@ class Service {
      * @param {('asc' | 'desc')} order
      */
     static sortByTitle(order = "asc") {
-        this.servicesProxy = this.servicesProxy.sort((a, b) => {
+        Service.servicesProxy.sort((a, b) => {
             if (order === "asc") {
                 return a.title.localeCompare(b.title);
             }
             return b.title.localeCompare(a.title);
         });
+        Service.render();
     }
 
     /**
@@ -99,7 +134,7 @@ class Service {
      * @param {('asc' | 'desc')} order
      */
     static sortById(order = "asc") {
-        this.servicesProxy = this.servicesProxy.sort((a, b) => {
+        Service.servicesProxy = Service.servicesProxy.sort((a, b) => {
             if (order === "asc") {
                 return a.id - b.id;
             }
@@ -113,18 +148,24 @@ class Service {
      * @returns {Service[]}
      */
     static searchByTitle(title) {
-        return this.servicesProxy.filter((service) =>
-            service.title
-                .trim()
-                .toLowerCase()
-                .includes(title.trim().toLowerCase()),
-        );
+        if (title.trim() === "") {
+            Service.servicesProxy = Service.services.slice();
+        } else {
+            Service.servicesProxy = Service.services.filter((service) =>
+                service.title.toLowerCase().includes(title.toLowerCase()),
+            );
+        }
+        Service.render();
     }
 
-    static render() {
+    /**
+     * Render services
+     * @param {Service[]} services
+     */
+    static render(services = Service.servicesProxy) {
         const servicesContainer = document.querySelector(".services-content");
 
-        servicesContainer.innerHTML = this.servicesProxy
+        servicesContainer.innerHTML = services
             .map(
                 (service) => `
                 <div class="slider-item service-item">

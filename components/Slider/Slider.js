@@ -85,6 +85,9 @@ class Slider {
     }
 
     stopAutoSlide() {
+        this.position = 0;
+        this.setPosition();
+        this.checkBtns();
         clearInterval(this.autoSlideInterval);
     }
 }

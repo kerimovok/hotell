@@ -1,5 +1,15 @@
+import $ from "./lib/$.js";
+
 document.addEventListener("DOMContentLoaded", function () {
-    // HEADER
+    // region FORMS
+    document
+        .querySelectorAll("form")
+        .forEach((form) =>
+            form.addEventListener("submit", (e) => e.preventDefault()),
+        );
+    // endregion
+
+    // region HEADER
     let header = document.querySelector("header");
 
     window.addEventListener("scroll", function () {
@@ -9,8 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
             header.classList.remove("fixed");
         }
     });
+    // endregion
 
-    // SCROLL TO TOP
+    // region SCROLL TO TOP
     let windowH = window.innerHeight / 2;
     let scrollUp = document.getElementById("scroll-up");
 
@@ -21,49 +32,52 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollUp.style.opacity = "0";
         }
     });
+    // endregion
 
-    // SERVICES
+    // region SERVICES
     const service1 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking1",
+        "A Trekking",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
     const service2 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking2",
+        "B Trekking",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
     const service3 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking3",
+        "C Trekking",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
     const service4 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking4",
+        "D Trekking",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
     const service5 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking5",
+        "E AITA",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
     const service6 = new Service(
         "./assets/media/icons/trekking.png",
-        "Trekking6",
+        "F AITA",
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there live the blind texts.",
     );
 
     Service.add(service1, service2, service3, service4, service5, service6);
+    // endregion
 
-    // DIALOGS
+    // region DIALOGS
     let videoDialog = new Dialog(
         "video-dialog",
         "video-dialog-open",
         "video-dialog-close",
     );
+    // endregion
 
-    // SLIDERS
+    // region SLIDERS
     let servicesSlider = new Slider(
         ".services-container",
         ".services-content",
@@ -109,11 +123,30 @@ document.addEventListener("DOMContentLoaded", function () {
         5,
         1,
     );
+    // endregion
 
-    // ACCORDIONS
+    // region ACCORDIONS
     let myAccordion = new Accordion(
         ".accordion-item",
         ".accordion-button",
         ".accordion-body",
     );
+    // endregion
+
+    // region EVENTS
+    $.on("#search-service", "input", function () {
+        Service.searchByTitle(this.value);
+        servicesSlider.stopAutoSlide();
+    });
+
+    $.on("#sort-services-alpha-down", "click", function () {
+        Service.sortByTitle("asc");
+        servicesSlider.stopAutoSlide();
+    });
+
+    $.on("#sort-services-alpha-up", "click", function () {
+        Service.sortByTitle("desc");
+        servicesSlider.stopAutoSlide();
+    });
+    // endregion
 });
