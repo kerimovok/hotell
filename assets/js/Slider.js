@@ -20,33 +20,26 @@ class Slider {
         this.btnPrev = document.querySelector(btnPrev);
         this.btnNext = document.querySelector(btnNext);
         this.gap = gap;
-        this.itemWidth =
-            (this.container.clientWidth - (this.slidesToShow - 1) * this.gap) /
-            this.slidesToShow;
+        this.itemWidth = this.items[0].clientWidth;
         this.movePosition = this.slidesToScroll * (this.itemWidth + this.gap);
         this.itemsCount = this.items.length;
         this.docHeight = document.documentElement.clientHeight;
 
         const setWH = () => {
-            this.itemWidth =
-                (this.container.clientWidth -
-                    (this.slidesToShow - 1) * this.gap) /
-                this.slidesToShow;
+            this.itemWidth = this.items[0].clientWidth;
             this.movePosition =
                 this.slidesToScroll * (this.itemWidth + this.gap);
             this.items.forEach((item) => {
-                item.style.minWidth = `${this.itemWidth}px`;
+                // item.style.minWidth = `${this.itemWidth}px`;
                 item.style.marginRight = `${this.gap}px`;
             });
+
+            this.position = 0;
         };
 
         window.addEventListener("resize", setWH);
         setWH();
 
-        // Without sliding back to the first slide
-        // const setPosition = () => {
-        //     this.content.style.transform = `translateX(${this.position}px)`;
-        // };
         const setPosition = () => {
             this.content.style.transform = `translateX(${this.position}px)`;
             if (
@@ -58,14 +51,6 @@ class Slider {
             }
         };
 
-        // Without sliding back to the first slide
-        // const checkBtns = () => {
-        //     this.btnPrev.disabled = this.position >= 0;
-        //     this.btnNext.disabled =
-        //         this.position <=
-        //         -(this.itemsCount - this.slidesToShow) *
-        //             (this.itemWidth + this.gap);
-        // };
         const checkBtns = () => {
             this.btnPrev.disabled = this.position >= 0;
             this.btnNext.disabled = false;

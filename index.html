@@ -87,14 +87,24 @@
                 </div>
             </section>
             <section id="services" class="home">
-                <div class="container search-services">
+                <div class="container services-actions">
                     <form>
-                        <input
-                            type="text"
-                            placeholder="Search services by their name"
-                        />
-                        <button type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                        <div class="search-and-sort">
+                            <input
+                                type="text"
+                                placeholder="Search services by their name"
+                            />
+                            <div class="sort">
+                                <button id="sort-services-alpha-down">
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                </button>
+                                <button id="sort-services-alpha-up">
+                                    <i class="fas fa-sort-alpha-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-service">
+                            <i class="fa fa-plus"></i>
                         </button>
                     </form>
                 </div>
@@ -767,6 +777,8 @@
                 </p>
             </div>
         </footer>
+        <!-- Moments JS -->
+        <script src="https://momentjs.com/downloads/moment.min.js"></script>
         <!-- Components JS -->
         <script src="./assets/js/Slider.js"></script>
         <script src="./assets/js/Accordion.js"></script>

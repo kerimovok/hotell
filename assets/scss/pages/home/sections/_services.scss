@@ -4,47 +4,93 @@ section.home#services {
     background: #f8f9fa;
     padding-block: 120px;
 
-    .container.search-services {
+    .container.services-actions {
         position: relative;
         z-index: 3;
         background: #f8f9fa;
         box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
         padding: 30px;
         margin-top: -12%;
-        border-radius: 10px;
 
         form {
-            position: relative;
-            width: 100%;
+            @include flex(space-between, center, row, 10px);
 
-            input {
-                @include transition();
-                background: white;
+            @include responsive(small) {
+                flex-direction: column;
+            }
+            .search-and-sort {
+                position: relative;
                 width: 100%;
-                border-radius: 50px;
-                padding: 15px 30px;
-                font-weight: 500;
+                input {
+                    @include transition();
+                    background: white;
+                    width: 100%;
+                    border-radius: 50px;
+                    padding: 15px 30px;
+                    font-weight: 500;
 
-                &:hover,
-                &:focus {
-                    background: rgba(0, 145, 123, 0.7);
-                    color: white;
-
-                    &::placeholder {
+                    &:hover,
+                    &:focus {
+                        background: lighten($primary-color, 5%);
                         color: white;
+
+                        &::placeholder {
+                            color: white;
+                        }
+                    }
+                }
+
+                .sort {
+                    @include flex(center, center, row, 0);
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+
+                    @include responsive(small) {
+                        position: static;
+                        margin-top: 20px;
+                    }
+
+                    button {
+                        min-width: 80px;
+                        background: $primary-color;
+                        color: white;
+                        padding: 15px 30px;
+
+                        @include responsive(small) {
+                            width: 100%;
+                        }
+
+                        &:hover {
+                            background: darken($primary-color, 5%);
+                        }
+                    }
+
+                    button#sort-services-alpha-down {
+                        border-radius: 50px 0 0 50px;
+                    }
+                    button#sort-services-alpha-up {
+                        border-radius: 0 50px 50px 0;
                     }
                 }
             }
 
-            button {
-                min-width: 100px;
-                position: absolute;
-                right: 0;
-                top: 0;
+            button#add-service {
+                flex-shrink: 0;
+                width: 46px;
+                height: 46px;
                 background: $primary-color;
                 color: white;
+
+                @include responsive(small) {
+                    width: 100%;
+                }
+
                 border-radius: 50px;
-                padding: 15px 30px;
+
+                &:hover {
+                    background: darken($primary-color, 5%);
+                }
             }
         }
     }
@@ -59,10 +105,20 @@ section.home#services {
         }
 
         .services-container > .services-content > .service-item {
+            flex-shrink: 0;
+            width: 30%;
             @include flex(center, flex-start, column, 0);
             padding: 50px 50px 100px 50px;
             box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
             background: white;
+
+            @include responsive(large) {
+                width: 50%;
+            }
+
+            @include responsive(medium) {
+                width: 100%;
+            }
 
             img {
                 width: 70px;
