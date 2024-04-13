@@ -19,9 +19,9 @@
 @import "./components/breakpoint";
 @import "./components/burger";
 @import "./components/scrollup";
-@import "./components/dialog";
-@import "./components/slider";
-@import "./components/accordion";
+@import "../../components/Dialog/dialog";
+@import "../../components/Slider/slider";
+@import "../../components/Accordion/accordion";
 // LAYOUT
 @import "./layout/header";
 @import "./layout/footer";

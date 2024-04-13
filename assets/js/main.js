@@ -22,29 +22,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // VIDEO DIALOG
-    let videoDialog = document.getElementById("video-dialog");
-    let videoDialogOpen = document.getElementById("video-dialog-open");
-    let videoDialogClose = document.getElementById("video-dialog-close");
+    // DIALOGS
+    let videoDialog = new Dialog(
+        "video-dialog",
+        "video-dialog-open",
+        "video-dialog-close",
+    );
 
-    videoDialogOpen.addEventListener("click", function () {
-        videoDialog.showModal();
-    });
+    // SLIDERS
+    let servicesSlider = new Slider(
+        ".services-container",
+        ".services-content",
+        ".service-item",
+        ".services-btn-prev",
+        ".services-btn-next",
 
-    videoDialogClose.addEventListener("click", function () {
-        videoDialog.close();
-    });
+        30,
+        3000,
+        3.3,
+        1,
+    );
+    let postsSlider = new Slider(
+        ".posts-container",
+        ".posts-content",
+        ".post-item",
+        ".posts-btn-prev",
+        ".posts-btn-next",
+        30,
+        3000,
+        3,
+        1,
+    );
+    let testimonialsSlider = new Slider(
+        ".testimonials-container",
+        ".testimonials-content",
+        ".testimonial-item",
+        ".testimonials-btn-prev",
+        ".testimonials-btn-next",
+        30,
+        3000,
+        3,
+        1,
+    );
+    let imagesSlider = new Slider(
+        ".images-container",
+        ".images-content",
+        ".image-item",
+        ".images-btn-prev",
+        ".images-btn-next",
+        0,
+        3000,
+        5,
+        1,
+    );
 
-    // Took from StackOverflow, it is optional anyway
-    videoDialog.addEventListener("click", function (event) {
-        var rect = videoDialog.getBoundingClientRect();
-        var isInDialog =
-            rect.top <= event.clientY &&
-            event.clientY <= rect.top + rect.height &&
-            rect.left <= event.clientX &&
-            event.clientX <= rect.left + rect.width;
-        if (!isInDialog) {
-            videoDialog.close();
-        }
-    });
+    // ACCORDIONS
+    let myAccordion = new Accordion(
+        ".accordion-item",
+        ".accordion-button",
+        ".accordion-body",
+    );
 });
