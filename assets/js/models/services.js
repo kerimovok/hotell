@@ -190,8 +190,10 @@ function initServiceDeleteButton() {
 Service.onRender = () => {
     initServiceDialogOpenButton();
     initServiceDeleteButton();
-    // TODO: Fix the slider not working properly after re-render
+    // To fix the slider not working properly after re-render
     servicesSlider.stopAutoSlide();
+    // To fix the slider not working properly after re-render
+    servicesSlider.initItems();
 };
 initServiceDialogOpenButton();
 initServiceDeleteButton();

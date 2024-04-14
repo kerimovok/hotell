@@ -1,3 +1,6 @@
+// ISSUE: #0001
+// Items lose their reference when they are re-rendered
+
 // TODO: Add lifecycle methods
 class Slider {
     constructor(
@@ -18,6 +21,7 @@ class Slider {
         this.container = document.querySelector(container);
         this.content = document.querySelector(content);
         this.items = document.querySelectorAll(items);
+        this.itemsSelector = items;
         this.btnPrev = document.querySelector(btnPrev);
         this.btnNext = document.querySelector(btnNext);
         this.gap = gap;
@@ -26,6 +30,12 @@ class Slider {
         this.itemsCount = this.items.length;
 
         this.init();
+    }
+
+    // To fix #0001 issue
+    initItems() {
+        this.items = document.querySelectorAll(this.itemsSelector);
+        this.setWH();
     }
 
     init() {

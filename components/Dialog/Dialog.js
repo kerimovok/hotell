@@ -4,8 +4,10 @@ class Dialog {
         this.openButton = document.getElementById(openButtonId);
         this.closeButton = document.getElementById(closeButtonId);
 
-        this.openButton.addEventListener("click", () => this.open());
-        this.closeButton.addEventListener("click", () => this.close());
+        if (this.openButton)
+            this.openButton.addEventListener("click", () => this.open());
+        if (this.closeButton)
+            this.closeButton.addEventListener("click", () => this.close());
         this.dialog.addEventListener("click", (event) =>
             this.closeIfClickedOutside(event),
         );

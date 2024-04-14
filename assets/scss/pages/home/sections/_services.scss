@@ -105,6 +105,7 @@ section.home#services {
         }
 
         .services-container > .services-content > .service-item {
+            position: relative;
             flex-shrink: 0;
             width: 30%;
             @include flex(flex-start, flex-start, column, 0);
@@ -132,7 +133,7 @@ section.home#services {
                 line-height: 1.2;
             }
 
-            a {
+            button {
                 position: absolute;
                 bottom: 30px;
                 text-transform: uppercase;
@@ -142,6 +143,11 @@ section.home#services {
                 color: #888888;
                 display: block;
                 width: max-content;
+            }
+
+            button.delete-service{
+                bottom: 60px;
+                color: #f8d7da;
             }
         }
     }

@@ -110,7 +110,7 @@
                     </form>
                 </div>
                 <div class="container">
-                    <h3 id="service-dialog-open">Our services</h3>
+                    <h3>Our services</h3>
                     <div class="slider-container services-container">
                         <div class="slider-content services-content"></div>
                     </div>
@@ -158,6 +158,7 @@
                     <form>
                         <div class="search-and-sort">
                             <input
+                                id="search-post"
                                 type="text"
                                 placeholder="Search posts by their name"
                             />
@@ -178,125 +179,20 @@
                 <div class="container">
                     <h3>Blog posts</h3>
                     <div class="slider-container posts-container">
-                        <div class="slider-content posts-content">
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_1.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_2.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_3.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_4.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_1.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_2.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_3.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                            <div class="slider-item post-item">
-                                <img
-                                    src="./assets/media/images/img_4.jpg"
-                                    alt=""
-                                />
-                                <div class="content">
-                                    <i class="fa fa-pen"></i>
-                                    <h4>
-                                        Far far away, behind the word mountains,
-                                        far from the countries
-                                    </h4>
-                                    <a href="#">Learn more</a>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="slider-content posts-content"></div>
                     </div>
                     <div class="slider-buttons">
                         <button class="btn-prev posts-btn-prev">Prev</button>
                         <button class="btn-next posts-btn-next">Next</button>
                     </div>
+
+                    <dialog id="post-dialog">
+                        <button id="post-dialog-close" type="submit" autofocus>
+                            <i class="fa fa-x"></i>
+                        </button>
+
+                        <div id="post-dialog-content"></div>
+                    </dialog>
                 </div>
             </section>
             <section id="faq" class="home">
@@ -730,7 +626,8 @@
             </div>
         </footer>
         <!-- Models -->
-        <script src="models/Services.js"></script>
+        <script src="models/Service.js"></script>
+        <script src="models/Post.js"></script>
         <!-- Components -->
         <script src="components/Dialog/Dialog.js"></script>
         <script src="components/Slider/Slider.js"></script>
@@ -744,5 +641,6 @@
         <!-- ##################[ MODELS ]################## -->
         <!-- Services -->
         <script src="./assets/js/models/services.js" type="module"></script>
+        <script src="./assets/js/models/posts.js" type="module"></script>
     </body>
 </html>
