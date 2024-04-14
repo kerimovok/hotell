@@ -1,24 +1,53 @@
 class Dialog {
-    constructor(dialogId, openId, closeId) {
+    constructor(dialogId, openButtonId, closeButtonId) {
         this.dialog = document.getElementById(dialogId);
-        this.openButton = document.getElementById(openId);
-        this.closeButton = document.getElementById(closeId);
+        this.openButton = document.getElementById(openButtonId);
+        this.closeButton = document.getElementById(closeButtonId);
 
         this.openButton.addEventListener("click", () => this.open());
         this.closeButton.addEventListener("click", () => this.close());
-        this.dialog.addEventListener("click", (event) => this.closeIfClickedOutside(event));
+        this.dialog.addEventListener("click", (event) =>
+            this.closeIfClickedOutside(event),
+        );
+    }
+
+    // For multiple buttons
+    // constructor(dialogSelector, openButtonsSelector, closeButtonsSelector) {
+    //     this.dialog = document.querySelector(dialogSelector);
+    //     this.openButtons = document.querySelectorAll(openButtonsSelector);
+    //     this.closeButtons = document.querySelectorAll(closeButtonsSelector);
+    //
+    //     this.openButtons.forEach((button) =>
+    //         button.addEventListener("click", () => this.open()),
+    //     );
+    //     this.closeButtons.forEach((button) =>
+    //         button.addEventListener("click", () => this.close()),
+    //     );
+    //     this.dialog.addEventListener("click", (event) =>
+    //         this.closeIfClickedOutside(event),
+    //     );
+    // }
+
+    onOpen() {
+        // Lifecycle method, called when the dialog is opened
+    }
+
+    onClose() {
+        // Lifecycle method, called when the dialog is closed
     }
 
     open() {
         this.dialog.showModal();
         // Disable scrolling
         document.body.style.overflow = "hidden";
+        this.onOpen();
     }
 
     close() {
         this.dialog.close();
         // Enable scrolling
         document.body.style.overflow = "auto";
+        this.onClose();
     }
 
     // Took from StackOverflow, it is optional anyway
