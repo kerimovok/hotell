@@ -15,8 +15,8 @@ class Service {
         },
     });
 
-    static validate(icon, title, content) {
-        if (!icon) {
+    static validate(image, title, description) {
+        if (!image) {
             throw new Error("Icon must not be empty");
         }
 
@@ -24,7 +24,7 @@ class Service {
             throw new Error("Title must be at least 3 characters long");
         }
 
-        if (content.length < 10) {
+        if (description.length < 10) {
             throw new Error("Content must be at least 10 characters long");
         }
     }
@@ -33,17 +33,18 @@ class Service {
 
     /**
      *
-     * @param {string} icon
+     * @param {string} image
      * @param {string} title
-     * @param {string} content
+     * @param {string} description
      */
-    constructor(icon, title, content) {
-        Service.validate(icon, title, content);
+    constructor(image, title, description) {
+        Service.validate(image, title, description);
 
-        this.icon = icon;
+        this.image = image;
         this.title = title;
-        this.content = content;
+        this.description = description;
         this.id = Service.id++;
+        this.createdAt = new Date();
     }
 
     /**
@@ -88,7 +89,7 @@ class Service {
      * @param {Service} service
      */
     static update(id, service) {
-        Service.validate(service.icon, service.title, service.content);
+        Service.validate(service.image, service.title, service.description);
 
         const index = Service.servicesProxy.findIndex(
             (existingService) => existingService.id === id,
@@ -143,6 +144,19 @@ class Service {
     }
 
     /**
+     * Sort services by date
+     * @param {('asc' | 'desc')} order
+     */
+    static sortByDate(order = "asc") {
+        Service.servicesProxy = Service.servicesProxy.sort((a, b) => {
+            if (order === "asc") {
+                return a.createdAt - b.createdAt;
+            }
+            return b.createdAt - a.createdAt;
+        });
+    }
+
+    /**
      * Search services by title
      * @param {string} title
      * @returns {Service[]}
@@ -168,13 +182,13 @@ class Service {
         servicesContainer.innerHTML = services
             .map(
                 (service) => `
-                <div class="slider-item service-item">
-                    <img src="${service.icon}" alt="${service.title}" />
-                    <h5>${service.title}</h5>
-                    <p>${service.content}</p>
-                    <a href="#">Learn more</a>
-                </div>
-            `,
+                    <div class="slider-item service-item">
+                        <img src="${service.image}" alt="${service.title}" />
+                        <h5>${service.title}</h5>
+                        <p>${service.description}</p>
+                        <button data-service-id="${service.id}" class="service-dialog-open">Learn more</button>
+                    </div>
+                `,
             )
             .join("");
     }
