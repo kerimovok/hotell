@@ -1,6 +1,12 @@
 .accordion-button {
+    // Mixins shouldn't be used here
     @include transition();
+    // Instead, use the following:
+    //transition: all 0.3s ease;
+    // Variables shouldn't be used here
     font-family: $font-family--WorkSans;
+    // Instead, use the following:
+    //font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
@@ -14,7 +20,10 @@
 }
 
 .accordion-body {
+    // Mixins shouldn't be used here
     @include transition();
+    // Instead, use the following:
+    //transition: all 0.3s ease;
     max-height: 0;
     overflow: hidden;
     border: none !important;

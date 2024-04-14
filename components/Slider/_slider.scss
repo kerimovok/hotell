@@ -5,9 +5,12 @@
     margin-bottom: 30px;
 }
 .slider-content {
+    // Mixins shouldn't be used here
+    @include transition();
+    // Instead, use the following:
+    //transition: all 0.3s ease;
     display: flex;
-    align-items: center;
-    transition: 0.5s;
+    align-items: stretch;
 }
 .slider-item {
     min-height: 300px;

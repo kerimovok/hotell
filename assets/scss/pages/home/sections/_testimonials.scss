@@ -127,7 +127,7 @@ section.home#testimonials {
             flex-shrink: 0;
             width: calc(33.4% - 30px);
             position: relative;
-            @include flex(center, flex-start, column, 0);
+            @include flex(flex-start, flex-start, column, 0);
             padding: 50px 50px 100px 50px;
             box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
             background: white;
