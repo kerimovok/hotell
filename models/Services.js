@@ -47,6 +47,16 @@ class Service {
         this.createdAt = new Date();
     }
 
+    // region Lyfecycle methods
+    /**
+     * Lifecycle method, called when the services are created
+     */
+    static onRender() {
+        // Lifecycle method, called when the services are rendered
+    }
+    // endregion
+
+    // region Static methods
     /**
      * Get all services
      * @returns {Service[]}
@@ -73,14 +83,18 @@ class Service {
     static add(...services) {
         Service.servicesProxy.push(...services);
     }
+
     /**
      * Delete a service by id
      * @param {number} id
      */
     static delete(id) {
-        Service.servicesProxy = Service.servicesProxy.filter(
-            (service) => service.id !== id,
+        const index = Service.servicesProxy.findIndex(
+            (service) => service.id === id,
         );
+        if (index !== -1) {
+            Service.servicesProxy.splice(index, 1);
+        }
     }
 
     /**
@@ -187,9 +201,13 @@ class Service {
                         <h5>${service.title}</h5>
                         <p>${service.description}</p>
                         <button data-service-id="${service.id}" class="service-dialog-open">Learn more</button>
+                        <button data-service-id="${service.id}" class="delete-service">Delete</button>
                     </div>
                 `,
             )
             .join("");
+
+        Service.onRender();
     }
+    // endregion
 }

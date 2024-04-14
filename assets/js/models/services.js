@@ -42,32 +42,6 @@ let serviceDialog = new Dialog(
     "service-dialog-close",
 );
 
-// TODO: Bind to button itself without using a loop
-function openServiceDialog() {
-    let openButtons = document.querySelectorAll(".service-dialog-open");
-    openButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            let service = Service.findById(parseInt(this.dataset.serviceId));
-
-            // Content of the dialog
-            const serviceDialogContent = serviceDialog.dialog.querySelector(
-                "#service-dialog-content",
-            );
-            serviceDialogContent.innerHTML = "";
-
-            serviceDialogContent.innerHTML = `
-                    <img src="${service.image}" alt="${service.title}" width="150" />
-                    <h2>${service.title}</h2>
-                    <p>${service.description}</p>
-                    <span>${moment().calendar(service.createdAt)}</span>
-                `;
-
-            serviceDialog.open();
-        });
-    });
-}
-openServiceDialog();
-
 // To stop the auto slide when the dialog is open
 // serviceDialog.onOpen = () => servicesSlider.stopAutoSlide(false);
 // To start the auto slide when the dialog is closed
@@ -151,7 +125,6 @@ $.on("#add-service", "click", function () {
                                                 description,
                                             ),
                                         );
-                                        openServiceDialog();
                                     } catch (e) {
                                         Swal.fire("Error", e.message, "error");
                                     }
@@ -181,4 +154,45 @@ $.on("#add-service", "click", function () {
             }
         });
 });
+
+// TODO: Bind to button itself without using a loop
+function initServiceDialogOpenButton() {
+    $.onAll(".service-dialog-open", "click", function () {
+        let service = Service.findById(parseInt(this.dataset.serviceId));
+
+        // Content of the dialog
+        const serviceDialogContent = serviceDialog.dialog.querySelector(
+            "#service-dialog-content",
+        );
+        serviceDialogContent.innerHTML = "";
+
+        serviceDialogContent.innerHTML = `
+                    <img src="${service.image}" alt="${service.title}" width="150" />
+                    <h2>${service.title}</h2>
+                    <p>${service.description}</p>
+                    <span>${moment().calendar(service.createdAt)}</span>
+                `;
+
+        serviceDialog.open();
+    });
+}
+
+// Got some god complex here, figured out the reason why the delete button is not working after first deletion
+// It's because the event listener is not reattached to the delete buttons after the re-render 🤯
+// Sounds pretty simple, huh?
+function initServiceDeleteButton() {
+    $.onAll(".delete-service", "click", function () {
+        let serviceId = parseInt(this.dataset.serviceId);
+        Service.delete(serviceId);
+    });
+}
+
+Service.onRender = () => {
+    initServiceDialogOpenButton();
+    initServiceDeleteButton();
+    // TODO: Fix the slider not working properly after re-render
+    servicesSlider.stopAutoSlide();
+};
+initServiceDialogOpenButton();
+initServiceDeleteButton();
 // endregion
