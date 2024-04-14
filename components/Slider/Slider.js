@@ -1,3 +1,4 @@
+// TODO: Add lifecycle methods
 class Slider {
     constructor(
         container,
@@ -30,7 +31,7 @@ class Slider {
     init() {
         this.setWH();
         this.setPosition();
-        this.checkBtns();
+        this.checkButtons();
         this.autoSlide();
 
         window.addEventListener("resize", this.setWH.bind(this));
@@ -58,7 +59,7 @@ class Slider {
         }
     }
 
-    checkBtns() {
+    checkButtons() {
         this.btnPrev.disabled = this.position >= 0;
         this.btnNext.disabled =
             this.position <=
@@ -69,13 +70,13 @@ class Slider {
     prevSlide() {
         this.position += this.movePosition;
         this.setPosition();
-        this.checkBtns();
+        this.checkButtons();
     }
 
     nextSlide() {
         this.position -= this.movePosition;
         this.setPosition();
-        this.checkBtns();
+        this.checkButtons();
     }
 
     autoSlide() {
@@ -84,10 +85,12 @@ class Slider {
         }, this.autoSlideInterval);
     }
 
-    stopAutoSlide() {
-        this.position = 0;
-        this.setPosition();
-        this.checkBtns();
+    stopAutoSlide(resetPosition = true) {
+        if (resetPosition) {
+            this.position = 0;
+            this.setPosition();
+            this.checkButtons();
+        }
         clearInterval(this.autoSlideInterval);
     }
 }
